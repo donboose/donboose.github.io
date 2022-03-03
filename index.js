@@ -1,15 +1,15 @@
 console.log("hello");
 
 function setup(){
-  createCanvas(600, 400);
-  background(200);
+    createCanvas(600, 400);
+    background(200);
+    noStroke();
 }
 function draw(){
-  ellipse(50, 50, 80, 80);
-  fill(0);
-  if (mouseIsPressed){
-    fill(255);
-  } else {
-    fill(0);
-  }
-]
+    ellipse(50, 50, 80, 80);
+    if (mouseIsPressed){
+        fill(100);
+    } else {
+        fill(255);
+    }
+}
