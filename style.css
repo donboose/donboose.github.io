@@ -19,8 +19,9 @@
     text-align: center;
 }
 .ncl:hover{
-    background-color: grey;
+    background-color: white;
+    color: powderblue;
 }
 .ncl:active{
-    background-color: whitesmoke;
+    background-color: grey;
 }
