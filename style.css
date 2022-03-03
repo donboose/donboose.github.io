@@ -30,3 +30,20 @@
     font-size: 2em;
     font-family: monospace;
 }
+#maillink{
+    display: inline-block;
+    padding: 15px 25px;
+}
+#playtank{
+    font-family: monospace;
+    color: black;
+    font-size: 3em;
+}
+#playtank.hover{
+    color: powderblue;
+    background-color: grey;
+}
+#tankpara{
+    font-family: monospace;
+    font-size: 2em;
+}
