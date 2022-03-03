@@ -25,3 +25,8 @@
 .ncl:active{
     background-color: grey;
 }
+#aboutpara{
+    color: black;
+    font-size: 2em;
+    font-family: monospace;
+}
