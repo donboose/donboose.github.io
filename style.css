@@ -1,3 +1,26 @@
-h1 {
-  color: blue;
+#gameheader{
+    font-weight: bold;
+    font-family: monospace;
+    border: 2px solid turquoise;
+    text-align: center;
+    color: black;
+    background-color: yellow;
+}
+#conheader{
+    font-weight: bold;
+    font-family: monospace;
+    border: 2px solid;
+    text-align: center;
+}
+#gameheader{
+    font-weight: bold;
+    font-family: monospace;
+    border: 2px solid;
+    text-align: center;
+}
+.ncl:hover{
+    background-color: grey;
+}
+.ncl:active{
+    background-color: whitesmoke;
 }
