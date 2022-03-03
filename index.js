@@ -23,16 +23,19 @@ function draw(){
     fill(255);
     rect(1160, 450, 40, 40);         //down
     fill(0);
-    text("D", 1170, 460);
+    text("D", 1175, 470);
     fill(255);
     rect(1120, 450, 40, 40);         //right
     fill(0);
-    text("L", 1130, 460);
+    text("L", 1135, 470);
     fill(255);
     rect(1160, 410, 40, 40);         //up
     fill(0);
-    text("U", 1170, 420);
+    text("U", 1175, 430);
     fill(255);
+    rect(1200, 450, 40, 40);         //left 
+    fill(0);
+    text("R", 1215, 470);
     rect(1200, 450, 40, 40);         //left 
     fill(0);
     text("R", 1210, 460);
