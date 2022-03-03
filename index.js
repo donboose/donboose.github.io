@@ -27,7 +27,7 @@ function draw(){
     fill(255);
     rect(1120, 450, 40, 40);         //right
     fill(0);
-    text("R", 1130, 460);
+    text("L", 1130, 460);
     fill(255);
     rect(1160, 410, 40, 40);         //up
     fill(0);
@@ -35,7 +35,7 @@ function draw(){
     fill(255);
     rect(1200, 450, 40, 40);         //left 
     fill(0);
-    text("L", 1210, 460);
+    text("R", 1210, 460);
     
     //keyboard controls
     if (keyIsPressed && keyCode === LEFT_ARROW){
