@@ -35,6 +35,11 @@ function draw() {
       enemies.splice(i, 1);
     }
   }
+if (frame >= enemySpawnTime) {
+    enemies.push(new Enemy(2));
+    enemySpawnTime *= 0.95;
+    frame = 0;
+  }
   textAlign(CENTER);
   textSize(40);
   text(score, width/2, 100);
