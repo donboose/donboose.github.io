@@ -34,16 +34,25 @@
     display: inline-block;
     padding: 15px 25px;
 }
-#playtank{
+.playtank{
     font-family: monospace;
-    color: black;
-    font-size: 3em;
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: blue;
+    border: none;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
 }
 #playtank.hover{
     color: powderblue;
     background-color: grey;
 }
-#tankpara{
+.tankpara{
     font-family: monospace;
     font-size: 2em;
+}
+#game1{
+    font-family: monospace;
 }
