@@ -1,8 +1,11 @@
 let player;
 let enemies = [];
 let score = 0;
+let Retry;
 function setup() {
   createCanvas(1250, 500);
+  Retry = createButton('RETRY');
+  Retry.hide();
   player = new Player();
 }
 
