@@ -43,6 +43,7 @@ function draw() {
 function mouseClicked(){
     player.shoot();
 }
+
   function drawReticle(){
     fill(0, 43, 255);
 	ellipse(mouseX, mouseY, 20);
