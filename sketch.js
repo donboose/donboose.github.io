@@ -24,7 +24,7 @@ function draw() {
     enemies[i].draw();
     enemies[i].update();
     if (enemies[i].hitYou()) { // add this
-        restart();
+        gameOver();
         break;
       }
     if (player.hasShot(enemies[i])) {
@@ -40,11 +40,6 @@ function draw() {
 function mouseClicked(){
     player.shoot();
 }
-function restart() {
-    player = new Player();
-    enemies = [];
-    score = 0;
-  }
   function drawReticle(){
     fill(0, 43, 255);
 	ellipse(mouseX, mouseY, 20);
