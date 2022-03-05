@@ -1,7 +1,7 @@
 let player;
 let enemies = [];
 let score = 0;
-let enemySpawnTime = 100;
+let enemySpawnTime = 50;
 let frame = 0;
 let Retry;
 function setup() {
