@@ -1,38 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>The Don - Home</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Software Architects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
-    
-    
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">The Don Website</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="ncl" class="active"><a href="index.html">Home</a></li>
-                <li class="ncl"><a href="game.html">Games</a></li>
-                <li class="ncl"><a href="contactus.html">Contact Us</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <h1 id="gameheader">The Don Website</h1>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6 col-sm-8"><img src="img.png" class="img-responsive" id="compimg" width="800px" alt="Image of our website on a computer"></div>
-            <div class="col-md-6 col-sm-4"><p id="aboutpara">Hi!! I am donboose.
-I am a coder. I develop webpages and do some general coding and tinkering. This website is 
-the fruit of many days of work, and it's under constant updation. If you have any doubts then 
-contact us!<br> This website is made by me (donboose). If you need any part of the code then 
-visit contact us. If you have any suggestions, I would be glad to hear it.</p></div>
-        </div>
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="index.html" class="w3-bar-item w3-button"><b>Software</b> Architects</a>
+    <!-- Float links to the right. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="https://obrorixlearn.weebly.com/" class="w3-bar-item w3-button">Blog</a>
+      <a href="project.html" class="w3-bar-item w3-button">Projects</a>
+      <a href="pixelart.html" class="w3-bar-item w3-button">Pixel Arts</a>
+      <a href="game.html" class="w3-bar-item w3-button">Games</a>
+      <a href="newcontactus.html" class="w3-bar-item w3-button">Contact</a>
     </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home">
+  <img class="w3-image" src="images/codingimg.jpg" alt="Architecture" width="1500" height="800">
+  <div class="w3-display-middle w3-margin-top w3-center">
+    <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Software</b></span> <span class="w3-hide-small w3-text-light-grey">Architects</span></h1>
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content w3-padding" style="max-width:1564px">
+
+  <!-- Project Section -->
+  <div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Tank Game</div>
+        <img src="images/tankgamepic (2).png" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Strategy game - coming soon</div>
+        <img src="#" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Coming Soon</div>
+        <img src="/w3images/house3.jpg" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Coming Soon</div>
+        <img src="/w3images/house4.jpg" alt="House" style="width:100%">
+      </div>
+    </div>
+  </div>
+
+  <div class="w3-container w3-padding-32" id="projects">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Pixel arts</h3>
+  </div>
+
+  <div class="w3-row-padding">
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Military camp</div>
+        <img src="images/armycamp1.png" alt="House" style="width: 100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Town Center</div>
+        <img src="images/towncenter.jfif" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Computer</div>
+        <img src="images/comppic.png" alt="House" style="width:100%">
+      </div>
+    </div>
+    <div class="w3-col l3 m6 w3-margin-bottom">
+      <div class="w3-display-container">
+        <div class="w3-display-topleft w3-black w3-padding">Coming Soon</div>
+        <img src="#" alt="House" style="width:100%">
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- About Section -->
+  <div class="w3-container w3-padding-32" id="about">
+    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+    <p>I am donboose and I am a programmer. I make javascript games and pixel arts. Check them out in the projects section. I also contribute
+        to the blog <a href="https://obrorixlearn.weebly.com/">Quarks to Quasars</a>. Check out the blog. If you want to ask anything, contact me
+        in contact us (still under development).
+    </p>
+  </div>
+
+  <!-- Contact Section -->
+  
+  
+
+<!-- End page content -->
+</div>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+    <p>Thank You for checking out the website. Also check out our blog <a href='https://obrorixlearn.weebly.com/'>Quarks to Quasars</a>.</p>
+</footer>
+
 </body>
 </html>
