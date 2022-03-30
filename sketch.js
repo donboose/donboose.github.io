@@ -5,7 +5,7 @@ let enemySpawnTime = 50;
 let frame = 0;
 let Retry;
 function setup() {
-  createCanvas(1250, 500);
+  createCanvas(1550, 750);
   Retry = createButton('RETRY');
   Retry.hide();
   player = new Player();
