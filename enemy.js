@@ -1,9 +1,11 @@
 class Enemy {
   
-    constructor(speed) {
+    constructor(speed, enehealth) {
       this.speed = speed;
       this.angle = 0;
+      this.enehealth = enehealth;
       let y;
+      
       if (random(1) < 0.5) {
         // from the top
         y = random(-300, 0);            
@@ -19,18 +21,29 @@ class Enemy {
       
     draw() {
       push();
-      fill(100, 255, 100);
+
       let angle = atan2(player.pos.y - this.pos.y, player.pos.x - this.pos.x);
       translate(this.pos.x, this.pos.y);
       rotate(angle - 1.5708);
-      fill(0, 43, 255);
+
+      strokeWeight(2);
+      fill(85, 92, 95);
       rect(0, 0, 45, 35);             // main body
-      rect(0, 30, 10, 37.5);   // tank gun
+      rect(0, 30, 10, 37.5);          // tank gun
+      rect(0, 0, 20, 22);             // tank head
       fill(0);
-      rect(-25, 0, 12, 50);      // left wheel
-      rect(25, 0, 12, 50);      // right wheel
-      fill(0, 43, 255);
-      rect(0, 0, 20, 22);    // tank head
+      rect(-25, 0, 12, 50);           // left wheel
+      rect(25, 0, 12, 50);            // right wheel
+
+      //nazi symbol
+      strokeWeight(1);
+      stroke(255, 255, 255);
+      fill(0, 0, 0);
+      rect(0, 0, 16, 4);
+      rect(0, 0, 4, 16);
+      noStroke();
+      rect(0, 0, 5, 5);
+
       pop();
     }
     
@@ -40,8 +53,15 @@ class Enemy {
       difference.limit(this.speed);
       this.pos.add(difference);
       this.angle = atan2(mouseY - this.pos.y, mouseX - this.pos.x);
+      stroke(0);
+      rectMode(CORNER);
+      fill(255, 255, 255);
+      rect(this.pos.x, this.pos.y-20, 60, 6);
+      fill(0, 128, 0);
+      rect(this.pos.x, this.pos.y-20, this.enehealth, 6);
+      rectMode(CENTER);
     }
     hitYou() {
-        return dist(this.pos.x, this.pos.y, player.pos.x, player.pos.y) < 20;
+      return dist(this.pos.x, this.pos.y, player.pos.x, player.pos.y) < 20;
     }
   }
