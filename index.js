@@ -31,12 +31,22 @@ function restart() {
     Retry.hide();
     player = new Player();
     enemies = [];
+	tough = [];
     score = 0;
     enemySpawnTime = 300;
 	enemyMaxSpeed = 2;
     frame = 0;
 	time = 0;
 	playerhealth = 200;
+	armorbar = 0;
+	armor = "iron";
+	nohullOwned = true;
+	ironhullOwned = false;
+	alhullOwned = false;
+	steelhullOwned = false;
+	titaniumhullOwned = false;
+	compositeOwned = false;
+	chobhamOwned = false;
 
     loop();
   }
@@ -59,9 +69,95 @@ function drawReticle(){
     noFill();
     strokeWeight(1);
     stroke(0);
-	  ellipse(mouseX, mouseY, 20);
+	ellipse(mouseX, mouseY, 20);
    	line(mouseX-14, mouseY-14, mouseX+14, mouseY+14);
-	  line(mouseX+14, mouseY-14, mouseX-14, mouseY+14);
-	  line(player.pos.x, player.pos.y, mouseX, mouseY);
+	line(mouseX+14, mouseY-14, mouseX-14, mouseY+14);
+	line(player.pos.x, player.pos.y, mouseX, mouseY);
     fill(0);
+}
+function keyTyped(){
+	if (key === 'o' && !settings && !hangarBool && !upgradeBool){
+		settings = true;
+      	pause = true;
+	} else if (key === "o" && settings){
+		settings = false;
+		pause = false;
+	}
+	if (key === "e" && !pause){
+		if (gun === "antitank"){
+			gun = "machine";
+			gunString = "L94A1 chain gun";
+		  } else if (gun === "machine"){
+			gun = "gatling";
+			gunString = "M134 gatling gun";
+		  } else if (gun === "gatling"){
+			gun = "missile";
+			gunString = "Multistage g-missile"
+		  } else if (gun === "missile"){
+			gun = "antitank";
+			gunString = "120 mm L/44 smoothbore gun";
+		  }
+	}
+	if (key === "f" && !hangarBool && !upgradeBool && !settings){
+		hangarBool = true;
+		pause = true;
+	} else if (key === "f" && hangarBool){
+		hangarBool = false;
+		pause = false;
+	}
+	if (key === "g" && !upgradeBool && !hangarBool && !settings){
+		upgradeBool = true;
+		pause = true;
+	} else if (key === "g" && upgradeBool){
+		upgradeBool = false;
+		pause = false;
+	}
+	if (key === "q"){
+		if (medikitCount > 0 && playerhealth < 200){
+			if (playerhealth > 100){
+			  medikitCount -= 1;
+			  playerhealth = 200;
+			} else if (playerhealth <= 100){
+			  medikitCount -= 1;
+			  playerhealth += 100;
+			}
+		  }
+	}
+	if (key === "z"){
+		if (bandageCount > 0 && playerhealth < 200){
+			if (playerhealth > 150){
+			  bandageCount -= 1;
+			  playerhealth = 200;
+			} else if (playerhealth <= 150){
+			  bandageCount -= 1;
+			  playerhealth += 50;
+			}
+		  }
+	}
+
+	if (key === 'b' && nocheat){
+		cheat1 = true;
+		nocheat = false;
+	}
+	if (key === "n" && cheat1){
+		cheat2 = true;
+	}
+	if (key === "m" && cheat2){
+		cheat3 = true;
+	}
+	if (key === "l" && cheat1 && cheat2 && cheat3){
+		money += 10000;
+		cheat1 = false;
+		cheat2 = false;
+		cheat3 = false;
+		nocheat = true;
+	}
+	if (key === "k" && cheat1 && cheat2 && cheat3){
+		medikitCount += 5;
+		bandageCount += 5;
+		cheat1 = false;
+		cheat2 = false;
+		cheat3 = false;
+		nocheat = true;
+	}
 }
