@@ -33,12 +33,12 @@ let canister_image, bandage_img, medickit_img;
 let deathString = "";
 
 function preload(){
-    coin_image = loadImage("images\\coin.png");
-    shop_image = loadImage("images\\shop2.png");
-    upgrade_image = loadImage("images\\upgrade.png");
-    canister_image = loadImage("images\\canister.jpg");
-    bandage_img = loadImage("images\\bandage.png");
-    medickit_img = loadImage("images\\medikit.png");
+    coin_image = loadImage("fp_plane\\images\\coin.png");
+    shop_image = loadImage("fp_plane\\images\\shop2.png");
+    upgrade_image = loadImage("fp_plane\\images\\upgrade.png");
+    canister_image = loadImage("fp_plane\\images\\canister.jpg");
+    bandage_img = loadImage("fp_plane\\images\\bandage.png");
+    medickit_img = loadImage("fp_plane\\images\\medikit.png");
 }
 
 function setup(){
