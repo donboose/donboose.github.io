@@ -136,6 +136,11 @@ function draw(){
     if (mouseIsPressed){
         player.shoot();
     }
+    if (keyIsPressed){
+        if (key === ' '){
+          player.shoot();
+        }
+    }
 
     if (frameCount%60 === 0){
         timePlayed++;
