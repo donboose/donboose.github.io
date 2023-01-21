@@ -146,10 +146,9 @@ function draw(){
         }
     }
     if (keyIsPressed){
+        if (key === ' '){
         if (gunName === "machine"){
-            if (key === ' '){
-                player.shoot();
-            }
+            player.shoot();
         } else if (gunName === "missile"){
             if (frameCount % 60 === 0){
                 if ((mig21Array.length > 0 || droneArray.length > 0) && missileCount > 0){
@@ -161,11 +160,7 @@ function draw(){
                 } 
             }
         }
-        if (gunName === "machine" && key === "s"){
-            gunName = "missile";
-        } else if (gunName === "missile" && key === "s"){
-            gunName = "machine";
-        }
+    }
     }
 
     for (let i = missileArray.length - 1; i >= 0; i--){
@@ -433,6 +428,16 @@ function mousePressed(){
                     money -= 1000;
                 }
             }
+        }
+    }
+}
+
+function keyPressed(){
+    if (keyCode === SHIFT){
+        if (gunName === "machine"){
+            gunName = "missile";
+        } else if (gunName === "missile"){
+            gunName = "machine";
         }
     }
 }
