@@ -57,19 +57,31 @@ function gameOver(){
 function restart() {
     Retry.hide();
     player = new Player(width/2, height/2);
-    enemies = [];
-	migs = [];
+    droneArray = [];
+	mig21Array = [];
+	missileArray = [];
     score = 0;
+
     droneSpawnTime = 300;
 	droneMaxSpeed = 2;
     frame = 0;
+
 	migSpawnTime = 300;
 	migFrame = 0;
+
+	gunName = "machine";
+	upgradeIcon = false;
+	gamePause = false;
+
+	targetString = "";
+	deathString = "";
 
 	timePlayed = 0;
 	playerHealth = 200;
 	medikitCount = 0;
 	bandageCount = 0;
+	fuelCanisterCount = 0;
+	missileCount = 6;
 	fuelCapacity = 200;
 	
     loop();
