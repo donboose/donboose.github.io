@@ -9,36 +9,40 @@ let frame = 100;
 let migSpawnTime = 300;
 let migFrame = 0;
 
-let enemies = [];
-let migs = [];
-let missiles = [];
+let droneArray = [];
+let mig21Array = [];
+let missileArray = [];
 
 let Retry;
 let target;
+let targetString = "";
 
 let playerHealth = 200;
 let fuelCapacity = 200;
+let missileCount = 6;
 
 let medikitCount = 0;
 let bandageCount = 0;
 let fuelCanisterCount = 0;
 
-let gun = 1;
+let gunName = "machine";
 let upgradeIcon = false;
 let gamePause = false;
 
-let coin_image, shop_image, upgrade_image;
-let canister_image, bandage_img, medickit_img;
+let coin_img, shop_img, upgrade_img, reload_img;
+let canister_img, bandage_img, medickit_img, missile_img;
 
 let deathString = "";
 
 function preload(){
-    coin_image = loadImage("fp_plane\\images\\coin.png");
-    shop_image = loadImage("fp_plane\\images\\shop2.png");
-    upgrade_image = loadImage("fp_plane\\images\\upgrade.png");
-    canister_image = loadImage("fp_plane\\images\\canister.jpg");
+    coin_img = loadImage("fp_plane\\images\\coin.png");
+    shop_img = loadImage("fp_plane\\images\\shop2.png");
+    upgrade_img = loadImage("fp_plane\\images\\upgrade.png");
+    canister_img = loadImage("fp_plane\\images\\canister.jpg");
     bandage_img = loadImage("fp_plane\\images\\bandage.png");
     medickit_img = loadImage("fp_plane\\images\\medikit.png");
+    reload_img = loadImage("fp_plane\\images\\reload.png");
+    missile_img = loadImage("fp_plane\\images\\missileimg.png");
 }
 
 function setup(){
@@ -61,38 +65,38 @@ function draw(){
     drawReticle(target.x, target.y);
     player.seek(target);
 
-    for (let i = enemies.length - 1; i >= 0; i--) {
-        enemies[i].draw();
-        enemies[i].update();  
-        if (enemies[i].hitYou()) {
+    for (let i = droneArray.length - 1; i >= 0; i--) {
+        droneArray[i].draw();
+        droneArray[i].update();  
+        if (droneArray[i].hitYou()) {
             playerHealth -= 40;
-            enemies.splice(i, 1);
+            droneArray.splice(i, 1);
             if (playerHealth <= 0){
                 deathString = "drone";
                 gameOver();
                 break;
             }  
         }            
-        else if (player.hasShot(enemies[i])) {
-            enemies[i].enehealth -= 30;
-            if (enemies[i].enehealth <= 0) {
+        else if (player.hasShot(droneArray[i])) {
+            droneArray[i].enehealth -= 30;
+            if (droneArray[i].enehealth <= 0) {
                 score++;
                 money += 100;
-                enemies.splice(i, 1);
+                droneArray.splice(i, 1);
             }
         }
               
     }
 
-    for (let i = migs.length - 1; i >= 0; i--) {
-        migs[i].draw();
-        migs[i].update(player);
+    for (let i = mig21Array.length - 1; i >= 0; i--) {
+        mig21Array[i].draw();
+        mig21Array[i].update(player);
 
-        if (dist(migs[i].pos.x, migs[i].pos.y, player.pos.x, player.pos.y) < 500){
-            migs[i].shoot();
+        if (dist(mig21Array[i].pos.x, mig21Array[i].pos.y, player.pos.x, player.pos.y) < 500){
+            mig21Array[i].shoot();
         }
 
-        if (migs[i].hitYou(player)) {
+        if (mig21Array[i].hitYou(player)) {
             playerHealth -= 20;
             if (playerHealth <= 0){
                 deathString = "mig";
@@ -100,19 +104,18 @@ function draw(){
                 break;
             }  
         }            
-        if (player.hasShot(migs[i])) {
-            migs[i].enehealth -= 20;
-            if (migs[i].enehealth <= 0) {
+        if (player.hasShot(mig21Array[i])) {
+            mig21Array[i].enehealth -= 20;
+            if (mig21Array[i].enehealth <= 0) {
                 score++;
                 money += 500;
-                migs.splice(i, 1);
+                mig21Array.splice(i, 1);
             }
-        }
-              
+        }    
     }
 
     if (frame >= droneSpawnTime) {
-        enemies.push(new Enemy(droneMaxSpeed, 60));
+        droneArray.push(new Enemy(droneMaxSpeed, 60));
         if (droneSpawnTime <= 100){
             droneSpawnTime *= 0.99;
         } else {
@@ -123,7 +126,7 @@ function draw(){
     frame += 0.5;
 
     if (migFrame >= migSpawnTime){
-        migs.push(new mig21(3, 60));
+        mig21Array.push(new mig21(3, 60));
         if (migSpawnTime <= 100){
           migSpawnTime *= 0.99;
         } else {
@@ -134,17 +137,57 @@ function draw(){
     migFrame += 0.25;
     
     if (mouseIsPressed){
-        player.shoot();
+        if (gunName === "machine"){
+            player.shoot();
+        } else if (gunName === "missile"){
+            if (frameCount % 60 === 0){
+                missileArray.push(new missile(player.pos.x, player.pos.y, player.vel.heading(), 5, 8));
+            }
+        }
     }
     if (keyIsPressed){
-        if (key === ' '){
-          player.shoot();
+        if (gunName === "machine"){
+            if (key === ' '){
+                player.shoot();
+            }
+        } else if (gunName === "missile"){
+            if (frameCount % 60 === 0){
+                if ((mig21Array.length > 0 || droneArray.length > 0) && missileCount > 0){
+                    missileArray.push(new missile(player.pos.x, player.pos.y, player.vel.heading(), 5, 8));
+                    missileCount--;
+                    targetString = "MISSILE \n FIRED";
+                } else if ((mig21Array.length === 0 && droneArray.length === 0)) {
+                    targetString = "NO TARGET \n TO LOCK";
+                } 
+            }
         }
+    }
+
+    for (let i = missileArray.length - 1; i >= 0; i--){
+        missileArray[i].draw();
+        missileArray[i].update();
+        if (mig21Array.length > 0){
+            missileArray[i].seek(mig21Array);
+            if (missileArray[i].shotPlane()){
+                mig21Array.splice(missileArray[i].returnTargetIndex(), 1)   
+                missileArray.splice(i, 1);
+                score++;
+                money += 500;
+            }
+        } else if (droneArray.length > 0){
+            missileArray[i].seek(droneArray);
+            if (missileArray[i].shotPlane()){
+                droneArray.splice(missileArray[i].returnTargetIndex(), 1)   
+                missileArray.splice(i, 1);
+                score++;
+                money += 100;
+            }
+        } 
     }
 
     if (frameCount%60 === 0){
         timePlayed++;
-        fuelCapacity -= 0.25;
+        fuelCapacity -= 0.4;
     }
 
     if (fuelCapacity <= 0){
@@ -155,7 +198,7 @@ function draw(){
     // dashboard
     stroke(0);
     strokeWeight(2);
-    fill(255);
+    fill(0, 100);
     rectMode(CORNER);
     rect(500, 650, 500, 100);
 
@@ -167,17 +210,40 @@ function draw(){
     rect(275-2, 673, 54, 54);
 
     noStroke();
-    fill(0);
+    fill(0, 255, 0);
     textSize(18);
     text("POS - " + player.pos.x.toFixed(0) + ", " + player.pos.y.toFixed(0), width/2-260, 670);
     text("VEL - " + player.vel.mag().toFixed(1) + " p/s", width/2-260, 690);
     text("ACC - " + player.acc.mag().toFixed(3) + " p/s2", width/2-260, 710);
     text("ANG - " + player.vel.heading().toFixed(2) + " Radians", width/2-260, 730);
 
+    if (gunName === "machine"){
+        text("GUN - 25 mm GATLING GUN", width/2-60, 670);
+        text("INFINITE BULLETS", width/2-60, 690);
+    } else if (gunName === "missile"){
+        text("MISSILE - AIM 120 AMRAAM", width/2-60, 670);
+        if (missileCount > 0){
+            stroke(0, 255, 0);
+            strokeWeight(2);
+            rectMode(CORNER);
+            fill(0, 100);
+            for (let i = 0; i < missileCount; i++){
+                rect(720 + i*18, 690, 8, 20);
+                triangle(720 + i*18, 690, 728 + i*18, 690, 724 + i*18, 680);
+            }
+            noStroke();
+            fill(0, 255, 0);
+            textSize(18);
+            text(targetString, 865, 690);
+        } else if (missileCount <= 0){
+            text("NO MISSILES LEFT", width/2-60, 690);
+        }
+    }
+
     stroke(0);
     fill(255, 255, 255);
-    rect(width/2-30, 730, 200, 10);
-    rect(width/2-30, 710, 200, 10);
+    rect(width/2-30, 735, 200, 10);
+    rect(width/2-30, 720, 200, 10);
 
     if (playerHealth <= 66){
         fill(255, 0, 0);
@@ -187,22 +253,21 @@ function draw(){
         fill(255, 128, 0);
     }
 
-    rect(width/2-30, 730, playerHealth, 10);
+    rect(width/2-30, 735, playerHealth, 10);
 
     fill(255, 165, 0);
-    rect(width/2-30, 710, fuelCapacity, 10);
+    rect(width/2-30, 720, fuelCapacity, 10);
 
     noStroke();
     textSize(15);
     fill(0);
-    text("HP ", 720, 740);
-    text(playerHealth, 950, 740);
-    text("FU ", 720, 720);
-    text(round(fuelCapacity/2), 950, 720);
+    text("HP ", 720, 745);
+    text(playerHealth, 950, 745);
+    text("FU ", 720, 730);
+    text(round(fuelCapacity/2), 950, 730);
 
-    image(upgrade_image, 1000, 680, 70, 70);
-
-    // text("/200", 895, 740);
+    image(upgrade_img, 1000, 680, 70, 70);
+    image(reload_img, 1070, 680, 70, 70);
 
     noStroke();
     fill(0);
@@ -211,7 +276,7 @@ function draw(){
     text("Score: "+score, 10, 30);
     text("Time: "+timePlayed+"s", 10, 60);
     text(money, 40, 90);
-    image(coin_image, 10, 72, 20, 20);
+    image(coin_img, 10, 72, 20, 20);
 
     image(medickit_img, 425, 675, 50, 50);
     text(medikitCount, 478, 725);
@@ -219,7 +284,7 @@ function draw(){
     image(bandage_img, 350, 675, 50, 50);
     text(bandageCount, 403, 725);
 
-    image(canister_image, 275, 675, 50, 50);
+    image(canister_img, 275, 675, 50, 50);
     text(fuelCanisterCount, 328, 725); 
 
     } else  {
@@ -229,16 +294,17 @@ function draw(){
             strokeWeight(2);
             rect(width/2 - 400, height/2 - 300, 800, 600);
 
-            rect(385-2, 98, 104, 104);
-            rect(510-2, 98, 104, 104);
-            rect(635-2, 98, 104, 104);
+            rect(383, 98, 104, 104);
+            rect(508, 98, 104, 104);
+            rect(633, 98, 104, 104);
+            rect(758, 98, 104, 104);
 
             noStroke();
             textSize(20);
             fill(0);
             text("SHOP", width/2-20, height/2 - 280);
             
-            image(canister_image, 385, 100, 100, 100);
+            image(canister_img, 385, 100, 100, 100);
             text("Fuel Can", 385, 220);
             text("fuel +75", 385, 240);
             text("500 C", 385, 260);
@@ -253,10 +319,16 @@ function draw(){
             text("HP +75", 635, 240);
             text("500 C", 635, 260);
 
-            textSize(15);
+            image(missile_img, 760, 100, 100, 100);
+            text("Missile", 760, 220);
+            text("missile +1", 760, 240);
+            text("1000 C", 760, 260);
+
+            textSize(20);
             text(fuelCanisterCount, 470, 200);
             text(medikitCount, 600, 200);
             text(bandageCount, 720, 200);
+            text(missileCount, 840, 200);
 
             fill(255);
             stroke(0);
@@ -264,6 +336,7 @@ function draw(){
             rect(385, 270, 100, 30);
             rect(510, 270, 100, 30);
             rect(635, 270, 100, 30);
+            rect(760, 270, 100, 30);
 
             noStroke();
             textSize(20);
@@ -271,8 +344,9 @@ function draw(){
             text("BUY", 418, 290);
             text("BUY", 543, 290);
             text("BUY", 668, 290);
+            text("BUY", 793, 290);
 
-            image(coin_image, width/2+250, height/2 - 290, 25, 25);
+            image(coin_img, width/2+250, height/2 - 290, 25, 25);
             text(money, width/2 + 280, height/2 - 270);
         }
     }
@@ -287,7 +361,7 @@ function mousePressed(){
         gamePause = false;
         upgradeIcon = false;
     }
-    //
+    
     if (! gamePause){
         if (mouseX > 425 && mouseX < 475 && mouseY > 675 && mouseY < 725){
             if (medikitCount >= 1){
@@ -319,6 +393,13 @@ function mousePressed(){
                 }
             }
         }
+        if (mouseX > 1070 && mouseY > 680 && mouseX < 1140 && mouseY < 750){
+            if (gunName === "machine"){
+                gunName = "missile";
+            } else if (gunName === "missile"){
+                gunName = "machine";
+            }
+        }
     }
 
     if (upgradeIcon){
@@ -340,6 +421,13 @@ function mousePressed(){
                 money -= 500;
             }
         }
+        if (mouseX > 760 && mouseX < 860 && mouseY > 270 && mouseY < 300){
+            if (money >= 1000){
+                if (missileCount < 6){
+                    missileCount++;
+                    money -= 1000;
+                }
+            }
+        }
     }
-    
 }
