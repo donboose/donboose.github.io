@@ -31,7 +31,7 @@ class Player {
             }
         }
         return false;
-      }
+    }
 
     
 
@@ -106,7 +106,7 @@ class Player {
         }
 
     shoot(){
-        if (gun === 1){
+        if (gunName === "machine"){
             if (frameCount % 7 === 0){
                 this.bullets.push(new Bullet(this.pos.x, this.pos.y, this.vel.heading(), 5, 80))
             }
