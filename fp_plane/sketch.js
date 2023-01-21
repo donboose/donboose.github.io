@@ -265,7 +265,7 @@ function draw(){
 
     noStroke();
     textSize(15);
-    fill(0);
+    fill(0, 255, 0);
     text("HP ", 720, 745);
     text(playerHealth, 950, 745);
     text("FU ", 720, 730);
