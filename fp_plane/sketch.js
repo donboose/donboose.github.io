@@ -161,6 +161,11 @@ function draw(){
                 } 
             }
         }
+        if (gunName === "machine" && key === "s"){
+            gunName = "missile";
+        } else if (gunName === "missile" && key === "s"){
+            gunName = "machine";
+        }
     }
 
     for (let i = missileArray.length - 1; i >= 0; i--){
@@ -198,7 +203,7 @@ function draw(){
     // dashboard
     stroke(0);
     strokeWeight(2);
-    fill(0, 100);
+    fill(0, 150);
     rectMode(CORNER);
     rect(500, 650, 500, 100);
 
