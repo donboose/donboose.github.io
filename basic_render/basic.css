@@ -1,61 +1,107 @@
-body {
-    font-family: 'Courier New', monospace;
+/* Reset styles */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #222;
-    color: #fff;
   }
-
-  header {
-    background-color: #333;
-    padding: 20px;
-    text-align: center;
+  
+  /* Dark mode styles */
+  body {
+    font-family: monospace;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
   }
-
-  nav {
-    background-color: #444;
-    padding: 10px;
-    text-align: right;
+  
+  a {
+    color: #b0b0b0;
   }
-
-  nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px;
-  }
-
-  nav {
-      background-color: #444;
-      padding: 10px;
-      text-align: left;
-  }
-
-  section {
-    padding: 20px;
-  }
-
-  .project-container, .pixel-art-container {
+  
+  /* Navbar styles */
+  .navbar {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #2a2a2a;
   }
-
-  .project, .pixel-art {
-    width: 48%;
-    border: 1px solid #444;
-    padding: 10px;
-    margin-bottom: 20px;
+  
+  .nav-brand {
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+  
+  .nav-links a {
+    margin-left: 1rem;
+    text-decoration: none;
+  }
+  
+  /* Header styles */
+  .header {
+    background-color: #2a2a2a;
+    padding: 2rem;
     text-align: center;
-    background-color: #333;
   }
-
-  .project img, .pixel-art img {
+  
+  .header-text h1 {
+    font-size: 2.5rem;
+  }
+  
+  /* Content styles */
+  .content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 0.5rem;
+  }
+  
+  .section {
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .section h3 {
+    border-bottom: 1px solid #4a4a4a;
+    padding-bottom: 0.5rem;
+  }
+  
+  /* Project grid styles */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 2rem;
+  }
+  
+  .project-card {
+    background-color: #2a2a2a;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  
+  .project-header {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+  
+  .centered {
+    text-align: center;
+  }
+  
+  .project-card img {
     max-width: 100%;
     height: auto;
   }
-
-  footer {
-    background-color: #333;
-    padding: 10px;
+  
+  /* Footer styles */
+  .footer {
+    background-color: #2a2a2a;
+    padding: 1rem 2rem;
     text-align: center;
+    margin-bottom: 0rem;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .hide-small {
+      display: none;
+    }
   }
