@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Software Architects</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    /* Basic styles */
+    body {
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 0;
+      background-color: #222;
+      color: #fff;
+    }
+
+    /* Header */
+    header {
+      background-color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: #444;
+      padding: 10px;
+      text-align: right;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    /* Sections */
+    section {
+      padding: 20px;
+    }
+
+    /* Projects and Pixel Arts */
+    .project-container, .pixel-art-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .project, .pixel-art {
+      width: 48%;
+      border: 1px solid #444;
+      padding: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      background-color: #333;
+    }
+
+    .project img, .pixel-art img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Software Architects</h1>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- Projects Section -->
+  <section>
+    <h2>Projects</h2>
+    <div class="project-container">
+      <div class="project">
+        <h3>Tank Game</h3>
+        <a href="../tank_game/game.html"><img src="../tankgamepic (2).png" alt="Tank Game"></a>
+      </div>
+      <div class="project">
+        <h3>Plane Game</h3>
+        <a href="../fpplane.html"><img src="../pg_image.png" alt="Plane Game"></a>
+      </div>
+      <!-- Add more project divs here -->
+    </div>
+  </section>
+
+  <!-- Pixel Arts Section -->
+  <section>
+    <h2>Pixel Arts</h2>
+    <div class="pixel-art-container">
+      <div class="pixel-art">
+        <h3>Military Camp</h3>
+        <img src="../armycamp1.png" alt="Military Camp">
+      </div>
+      <div class="pixel-art">
+        <h3>Town Center</h3>
+        <img src="../towncenter.jfif" alt="Town Center">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Thank You for checking out the website. Also check out our blog <a href='https://obrorixlearn.weebly.com/'>Quarks to Quasars</a>.</p>
+  </footer>
+
+</body>
+</html>
