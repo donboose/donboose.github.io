@@ -8,16 +8,17 @@
     body {
       font-family: Arial, sans-serif;
       margin: 0px;
-      padding: 30px;
+      padding: 30px;     
     }
 
     h1 {
-      text-align: center;
-      margin-top: 50px;
+      text-align: left;
+      margin-top: 20px;
     }
 
     h2 {
       margin-top: 30px;
+      margin-right: 50px;
     }
 
     form {
@@ -34,15 +35,41 @@
       cursor: pointer;
     }
 
+    hr {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
     button:hover {
       background-color: #0056b3;
+    }
+
+    p {
+      font-size: large;
+    }
+
+    code {
+      margin-right: 45px;
+    }
+
+    .downloads-h1 {
+      margin-top: 5px;
+      text-decoration: underline;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
     }
   </style>
 </head>
 <body>
-  <h1>Download Boost - Godot</h1>
+  <button id="mode-toggle" style="float: right;">Theme: light</button>
+  <h1 class="downloads-h1">Downloads:</h1>
 
-  <h2>Windows: </h2>
+  <h1>Boost - Godot 3D Game</h1>
+
+  <h2>Windows: (EXE)</h2>
   <form method="get" action="../downloads/Rocket.exe">
     <button type="submit">Download</button>
   </form>
@@ -52,29 +79,43 @@
     <button type="submit">Download</button>
   </form>
 
-  <br>
+  <hr>
 
-  <h1>Download packaged java application (Required JRE)</h1>
+  <h1>Package Java Application (Required JRE)</h1>
 
-  <h2>Windows: </h2>
+  <h2>Windows: (EXE)</h2>
   <form method="get" action="../downloads/packaged_app1.exe">
     <button type="submit">Download</button>
   </form>
 
-  <br>
+  <hr>
 
   <h1>Packaged Java Application - Zip (With desktop app support)</h1>
 
-  <h2>Linux/Mac:</h2>
+  <h2>Linux / Mac:</h2>
   <form method="get" action="../downloads/app_desktop.zip">
     <button type="submit">Download</button>
   </form>
   <h3>Instructions</h3>
   <p>Extract the zip file and go into the root of the zip file (app_desktop). Then 
   run the following command in the terminal: <br>
-  <code>./create_desktop_shortcut.sh</code> <p>For linux</p>
-  <code>./mac_create_desktop_shortcut.sh</code> <p>For mac</p>
+    <code>./create_desktop_shortcut.sh</code> for linux <br>
+    <code>./mac_create_desktop_shortcut.sh</code> for Mac
   </p>
+
+  <hr>
+
+  <script>
+      const modeToggle = document.getElementById('mode-toggle');
+      const body = document.body;
+  
+      modeToggle.addEventListener('click', () => {
+        body.style.backgroundColor = body.style.backgroundColor === 'black' ? 'white' : 'black';
+        body.style.color = body.style.color === 'white' ? 'black' : 'white';
+        modeToggle.innerText = modeToggle.innerText === 'Theme: light' ? 'Theme: dark' : 'Theme: light';
+      });
+    </script>
+</body>
 
 </body>
 </html>
