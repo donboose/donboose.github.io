@@ -114,15 +114,37 @@
 
   <hr>
 
+  <form method="get" action="../downloads/phonostream_ext.zip">
+    <button type="submit">Download</button>
+  </form>
+
+  <form method="get" action="../downloads/phonostream_ext_img.zip">
+    <button type="submit">Download</button>
+  </form>
+
   <script>
       const modeToggle = document.getElementById('mode-toggle');
       const body = document.body;
-  
+
+      const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (prefersDarkMode) {
+          body.style.backgroundColor = 'black';
+          body.style.color = 'white';
+          modeToggle.innerText = 'Theme: dark';
+      } else {
+          body.style.backgroundColor = 'white';
+          body.style.color = 'black';
+          modeToggle.innerText = 'Theme: light';
+      }
+
       modeToggle.addEventListener('click', () => {
-        body.style.backgroundColor = body.style.backgroundColor === 'black' ? 'white' : 'black';
-        body.style.color = body.style.color === 'white' ? 'black' : 'white';
-        modeToggle.innerText = modeToggle.innerText === 'Theme: light' ? 'Theme: dark' : 'Theme: light';
+          body.style.backgroundColor = body.style.backgroundColor === 'black' ? 'white' : 'black';
+          body.style.color = body.style.color === 'white' ? 'black' : 'white';
+          modeToggle.innerText = modeToggle.innerText === 'Theme: light' ? 'Theme: dark' : 'Theme: light';
       });
+
+      // window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', setTheme);
     </script>
 </body>
 </html>
